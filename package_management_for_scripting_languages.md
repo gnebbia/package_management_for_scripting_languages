@@ -129,7 +129,14 @@ in order to manage packages we should use "pip", well by default when we install
 python we will have a much simpler package manager called "easy_install", so
 we could use it to install pip and then use pip always. Notice that the 
 repository containing all the python packages is called PyPi, and this is
-equivalent to CPAN for Perl. Let's see some basic pip commands:
+equivalent to CPAN for Perl. Pip should always be used with user
+privileges, and never with root/sudo. 
+If we have problems installing packages with user privileges, we can try
+forcing it by using the "pip install --user packagename" command, in practice
+when we normally use pip it should have the "--user" option enabled by 
+default, but if this is not true, we just specify it.
+
+Let's see some basic pip commands:
 
 ```$pip search keyword ```
 
@@ -174,7 +181,9 @@ is to call the directory containing all the needed things "env"
 
 ```$virtualenv -p /usr/bin/python2.7 env ```
 
-this will create a python virtual environment with a selected python version
+this will create a python virtual environment with a selected python version,
+also remember in this case that if we are using pyenv to manage python versions,
+we should include the full path to the local python version ~/.pyenv/###/###/###
 
 ```$source env/bin/activate ```
 
