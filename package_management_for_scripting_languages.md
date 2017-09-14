@@ -124,7 +124,12 @@ now if a user wants to install the dependencies, just needs to do:
 
   
 <h2>PYTHON</h2>
-To manage different versions of python we can use different things, i use pyenv
+To manage different versions of python we can use different things, i use pyenv,
+in order to manage packages we should use "pip", well by default when we install
+python we will have a much simpler package manager called "easy_install", so
+we could use it to install pip and then use pip always. Notice that the 
+repository containing all the python packages is called PyPi, and this is
+equivalent to CPAN for Perl. Let's see some basic pip commands:
 
 ```$pip search keyword ```
 
@@ -144,9 +149,13 @@ analogous to "pip list"
 
 ```$pip uninstall moduleName ```
 
-uninstalls the specified module
-to manage different perl environments we can use virtualenv is a tool to create isolated Python environments. 
-virtualenv creates a folder which contains all the necessary executables to use the 
+uninstalls the specified module.
+
+To manage isolated python environments we can use virtualenv.
+There are many wrappers around virtualenv, but my suggestion is
+to learn to use virtualenv, and only with practice maybe pass to
+something simpler, actually virtualenv is not that difficult.
+Virtualenv creates a folder which contains all the necessary executables to use the 
 packages that a Python project would need, let's see the basics:
 
 ```$pip install virtualenv ```
@@ -157,20 +166,26 @@ we first install virtualenv
 
 we cd to the directory project
 
-```$virtualenv my_proj ```
+```$virtualenv env ```
 
-this will create a python virtual environment called "my_proj"
+this will create a python virtual environment called "env"
+notice that we can give whatever name we like, the convention
+is to call the directory containing all the needed things "env"
 
-```$virtualenv -p /usr/bin/python2.7 my_proj ```
+```$virtualenv -p /usr/bin/python2.7 env ```
 
 this will create a python virtual environment with a selected python version
 
-```$source my_proj/bin/activate ```
+```$source env/bin/activate ```
 
-this will activate the environment
+
+once in the project directory this will activate the environment
 now we can install packages as usual
 
 ```$pip install requests```
+
+Remember to put the entire "env" directory in a git ignore file, if
+we are using git.
 
 if we are done working with this environment we do:
 
